@@ -4,14 +4,11 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.invoke.MethodHandles;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public abstract class Problem {
 
-    public static String CPU = "Ryzen 5850U";
+    public static String CPU = "Ryzen 8840U";
 
     /**
      * Solve this problem
