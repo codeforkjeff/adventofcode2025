@@ -43,6 +43,14 @@ public class PrintingDeptFloor {
                 }));
     }
 
+    public static long countRollsWithAdjacent(Stream<String> input, int limit) {
+        var rolls = buildRolls(input);
+        var adjacencyMap = buildAdjacencyMap(rolls);
+        return adjacencyMap.entrySet().stream().filter(entry ->
+                entry.getValue() < limit
+        ).count();
+    }
+
     // iteratively remove rolls from adjacencyMap until there are no rolls
     // with fewer than "limit" adjacent rolls
     public static int removeRolls(Map<Coord, Integer> adjacencyMap, int limit, int removed) {
