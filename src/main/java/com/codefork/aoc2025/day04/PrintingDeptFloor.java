@@ -42,4 +42,39 @@ public class PrintingDeptFloor {
                     return acc;
                 }));
     }
+
+    // iteratively remove rolls from adjacencyMap until there are no rolls
+    // with fewer than "limit" adjacent rolls
+    public static int removeRolls(Map<Coord, Integer> adjacencyMap, int limit, int removed) {
+        var removable = adjacencyMap.entrySet().stream()
+                .filter(entry -> entry.getValue() < limit)
+                .map(Map.Entry::getKey)
+                .toList();
+        if (removable.isEmpty()) {
+            return removed;
+        } else {
+            // mutate adjacencyMap, instead of doing it in a more FP style, for performance
+            for (Coord coord : removable) {
+                var x = coord.x();
+                var y = coord.y();
+                IntStream.range(x - 1, x + 2).boxed().flatMap(newX ->
+                                IntStream.range(y - 1, y + 2).mapToObj(newY -> new Coord(newX, newY))
+                        ).filter(c -> adjacencyMap.containsKey(c) && !c.equals(coord))
+                        .forEach(c -> {
+                            var newValue = adjacencyMap.get(c) - 1;
+                            adjacencyMap.put(c, newValue);
+                        });
+                adjacencyMap.remove(coord);
+            }
+            return removeRolls(adjacencyMap, limit, removed + removable.size());
+        }
+    }
+
+    // iteratively remove rolls and return a count of total rolls removed
+    public static int countRemovedRolls(Stream<String> input) {
+        var rolls = buildRolls(input);
+        var adjacencyMap = buildAdjacencyMap(rolls);
+        return removeRolls(adjacencyMap, 4, 0);
+    }
+
 }
