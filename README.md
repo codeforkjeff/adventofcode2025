@@ -30,3 +30,16 @@ target/appassembler/bin/aoc2025 all
 ```
 
 ## Journal
+
+### 12/3/2025
+
+Off to a late start, but caught up to day 3 pretty quickly.
+
+I'm liking [the changes to AoC this year](https://adventofcode.com/2025/about#faq_num_days).
+12 days is so much better, in my opinion. When I did AoC for the first time in 2018, I ended up
+spending a good portion of the holidays obsessing over unfinished puzzles. It actually discouraged
+me from doing it in many subsequent years. 12 days gives you plenty of time to wrap things up before
+the holidays if you fall behind... assuming the puzzles aren't crazy hard. We'll see!
+
+I wanted to try using Haskell this year but didn't do enough prep ahead of time, and I didn't feel
+like learning it on-the-go this year. Maybe next year.
