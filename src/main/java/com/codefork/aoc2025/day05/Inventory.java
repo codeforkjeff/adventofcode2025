@@ -1,6 +1,7 @@
 package com.codefork.aoc2025.day05;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -36,31 +37,26 @@ public class Inventory {
 
     public record Database(List<Range> fresh, List<Long> ingredients) {
 
-        // iteratively merge until there's nothing left to merge.
-        // there's probably a clever way to do this in a single pass, but this is already very fast.
+        /**
+         * transform a list of ranges by merging overlapping ones
+         */
         public static List<Range> merge(List<Range> ranges) {
-            record MergeResult(boolean merged, Range range) {
-            }
-
-            var mergedRanges = ranges.stream().collect(foldLeft(() -> new ArrayList<Range>(), (acc, range) -> {
-                var results = acc.stream().map(rangeItem -> {
-                    var combined = rangeItem.combine(range);
-                    return new MergeResult(combined.isPresent(), combined.orElse(rangeItem));
-                }).toList();
-                // this can probably be accomplished with a foldLeft, to avoid collecting the stream
-                // into a List, but this is easier to read and understand
-                var anyMerged = results.stream().anyMatch(result -> result.merged);
-                var newDistinctRanges = new ArrayList<>(results.stream().map(MergeResult::range).toList());
-                if (!anyMerged) {
-                    newDistinctRanges.add(range);
-                }
-                return newDistinctRanges;
-            }));
-
-            if (ranges.size() != mergedRanges.size()) {
-                return merge(mergedRanges);
-            }
-            return mergedRanges;
+            // sort our ranges, then transform list into another list, combining each item
+            // with the last one if possible
+            var sorted = ranges.stream().sorted(Comparator.comparing(Range::start));
+            return sorted.collect(foldLeft(
+                    () -> new ArrayList<Range>(),
+                    (acc, range) -> {
+                        if(!acc.isEmpty()) {
+                            Range last = acc.getLast();
+                            var combined = last.combine(range);
+                            acc.removeLast();
+                            acc.addAll(combined.map(List::of).orElse(List.of(last, range)));
+                        } else {
+                            acc.add(range);
+                        }
+                        return acc;
+                    })).stream().toList();
         }
 
         public long getNumFreshIngredients() {
