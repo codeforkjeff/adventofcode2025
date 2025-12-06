@@ -16,11 +16,11 @@ public class Part02 extends Problem {
     record Group(String op, int start, int end) {
     }
 
-    public static long NO_NUMBER = -1L;
+    public static final long NO_NUMBER = -1L;
 
     public static long getSumOfGroupOps(Stream<String> input) {
         var lines = input.collect(Collectors.toList());
-        var operatorsRaw = lines.removeLast();
+        var operators = lines.removeLast();
 
         // we have to use longestLine when iterating over any line, to ensure we
         // deal with extra spaces
@@ -34,7 +34,7 @@ public class Part02 extends Problem {
         var operatorGroups = IntStream.range(0, longestLine).boxed().collect(foldLeft(
                 () -> new ArrayList<Group>(),
                 (acc, idx) -> {
-                    var op = idx < operatorsRaw.length() ? operatorsRaw.substring(idx, idx + 1) : " ";
+                    var op = idx < operators.length() ? operators.substring(idx, idx + 1) : " ";
                     // handle last element
                     if (idx == longestLine - 1) {
                         var lastGroup = acc.removeLast();

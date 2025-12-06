@@ -13,9 +13,9 @@ import static com.codefork.aoc2025.util.FoldLeft.foldLeft;
 public class Part01 extends Problem {
 
     public static long getSumOfAllOps(Stream<String> input) {
-        var lines = input.map(line -> {
-            return line.strip().split("\\s+");
-        }).collect(Collectors.toList());
+        var lines = input
+                .map(line -> line.strip().split("\\s+"))
+                .collect(Collectors.toList());
 
         var operators = lines.removeLast();
 
@@ -23,24 +23,20 @@ public class Part01 extends Problem {
                 Arrays.stream(numberStrings).map(Long::parseLong).toList()
         ).toList();
 
-        var sumOfAlLOps = Arrays.stream(operators).map(WithIndex.indexed()).map(entry -> {
+        return Arrays.stream(operators).map(WithIndex.indexed()).map(entry -> {
             var idx = entry.index();
             var op = entry.value();
-            var result = linesOfNumbers.stream().collect(foldLeft(
+            return linesOfNumbers.stream().collect(foldLeft(
                     () -> -1L,
                     (acc, line) -> {
-                        var opResult = switch (op) {
+                        return switch (op) {
                             case "+" -> acc != -1 ? acc + line.get(idx) : line.get(idx);
                             case "*" -> acc != -1 ? acc * line.get(idx) : line.get(idx);
                             default -> throw new RuntimeException("unrecognized operator " + op);
                         };
-                        return opResult;
                     }
             ));
-            return result;
         }).reduce(0L, Long::sum);
-
-        return sumOfAlLOps;
     }
 
     @Override
