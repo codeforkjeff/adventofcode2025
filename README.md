@@ -43,3 +43,17 @@ the holidays if you fall behind... assuming the puzzles aren't crazy hard. We'll
 
 I wanted to try using Haskell this year but didn't do enough prep ahead of time, and I didn't feel
 like learning it on-the-go this year. Maybe next year.
+
+### 12/5/2025
+
+Used pattern matching for the day 5 solution, which was fun, though it wasn't a particularly interesting
+use of it.
+
+There was some excitement when Python added `match` in 3.10 back in 2021, but it's really just
+a convenience. It's much cooler in Java >= 21: the compiler checks for exhaustiveness when switching
+on a sealed interface or class. Yet another way functional programming has permeated Java, through
+better support for algebraic data types.
+
+Last year I was pretty obsessed with writing things in as strict an FP way as I could in pure Java. That
+was a good learning exercise. I'm less dogmatic about it this year, especially in cases where imperative
+code feels more readable to me. Which is subjective, of course, but certain habits die hard.
