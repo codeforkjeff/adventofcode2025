@@ -21,4 +21,12 @@ public record Pos(int x, int y) {
         ).filter(pos -> !pos.equals(this)).toList();
     }
 
+    public Pos withX(int x) {
+        return new Pos(x, y);
+    }
+
+    public Pos withY(int y) {
+        return new Pos(x, y);
+    }
+
 }

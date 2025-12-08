@@ -57,3 +57,12 @@ better support for algebraic data types.
 Last year I was pretty obsessed with writing things in as strict an FP way as I could in pure Java. That
 was a good learning exercise. I'm less dogmatic about it this year, especially in cases where imperative
 code feels more readable to me. Which is subjective, of course, but certain habits die hard.
+
+### 12/7/2025
+
+Of course, the first difficult problem of AoC *would* fall on the first Saturday. :P
+
+I wrote the solution for part 1 sloppily, had the right intuition about how to do part 2
+but wrestled for a bit to get it exactly right, then ended up rewriting everything to consolidate
+solving both parts using the same code. It took a little while, but I'm happy with how
+compact the result is.
