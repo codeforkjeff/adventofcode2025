@@ -41,9 +41,13 @@ record Manifold(Set<Pos> splitters, Pos start, int maxX, int maxY) {
         return new RunResult(splittersHit.size(), count);
     }
 
-    private long run(Pos head, Set<Pos> splittersHit, Map<Pos, Long> numTimelines) {
-        if (head.y() <= maxY()) {
-            var nextPos = new Pos(head.x(), head.y() + 1);
+    private long run(Pos pos, Set<Pos> splittersHit, Map<Pos, Long> numTimelines) {
+        // track which splitter we've encountered in splittersHit for part 1.
+        // return the number of timelines for the tachyon at position 'pos', calculating
+        //   it recursively, for part 2.
+
+        if (pos.y() <= maxY()) {
+            var nextPos = new Pos(pos.x(), pos.y() + 1);
             if (splitters().contains(nextPos)) {
                 //System.out.println("Split at " + nextPos);
                 splittersHit.add(nextPos);

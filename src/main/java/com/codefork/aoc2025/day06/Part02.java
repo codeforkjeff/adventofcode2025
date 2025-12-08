@@ -23,13 +23,13 @@ public class Part02 extends Problem {
         var operators = lines.removeLast();
 
         // we have to use longestLine when iterating over any line, to ensure we
-        // deal with extra spaces
+        // deal with trailing spaces
         int longestLine = lines.stream()
                 .mapToInt(String::length)
                 .max()
                 .orElseThrow();
 
-        // parse operatorsRaw into a list of Groups indicating start and end columns
+        // parse operators into a list of Groups indicating start and end columns
         // pertaining to that operator
         var operatorGroups = IntStream.range(0, longestLine).boxed().collect(foldLeft(
                 () -> new ArrayList<Group>(),
