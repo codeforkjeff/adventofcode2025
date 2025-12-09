@@ -73,15 +73,14 @@ Day 8 was also a tough one. Some minor spoilers below.
 
 I incorrectly thought it would be too expensive to pre-calculate all the possible distances between
 every pair of junction boxes, so I wasted time doing some weird shenanigans that I later threw out.
-When I point to the point where I was fairly sure my algorithm was correct, I still wasn't getting
+When I got to the point where I was fairly sure my algorithm was correct, I still wasn't getting
 the right answer. Then I figured out I was misinterpreting what "nothing happens" in the puzzle prompt
 meant.
 
-Tangential thought: been thinking about the pros and cons of using stateless static methods
-as functions, vs passing in input into the constructor, and storing the return values as members
-of the object. The latter makes it a little easier to extend as compared to encapsulating the return values
-in a record or object, because you have to change that signature and any relevant code each time you extend.
-The downside is you risk some null safety.
+Tangential thought: been considering the pros and cons of using static methods as functions vs passing in
+input into a constructor, and storing the return values as members of the object. The latter makes it a little
+easier to extend as compared to encapsulating the return values in a record or object, because you have to change
+that signature and any relevant code each time you extend. The downside is you risk some null safety.
 
 Obviously, as problems get more complicated, writing the solutions is a much more iterative
 process, with more simplifying/optimizing both along the way, and also afterwards, when certain things
