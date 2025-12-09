@@ -66,3 +66,24 @@ I wrote the solution for part 1 sloppily, had the right intuition about how to d
 but wrestled for a bit to get it exactly right, then ended up rewriting everything to consolidate
 solving both parts using the same code. It took a little while, but I'm happy with how
 compact the result is.
+
+### 12/8/2025
+
+Day 8 was also a tough one. Some minor spoilers below.
+
+I incorrectly thought it would be too expensive to pre-calculate all the possible distances between
+every pair of junction boxes, so I wasted time doing some weird shenanigans that I later threw out.
+When I point to the point where I was fairly sure my algorithm was correct, I still wasn't getting
+the right answer. Then I figured out I was misinterpreting what "nothing happens" in the puzzle prompt
+meant.
+
+Tangential thought: been thinking about the pros and cons of using stateless static methods
+as functions, vs passing in input into the constructor, and storing the return values as members
+of the object. The latter makes it a little easier to extend as compared to encapsulating the return values
+in a record or object, because you have to change that signature and any relevant code each time you extend.
+The downside is you risk some null safety.
+
+Obviously, as problems get more complicated, writing the solutions is a much more iterative
+process, with more simplifying/optimizing both along the way, and also afterwards, when certain things
+become clear. That's just to say, the code I committed for day 8 is pretty different from the code I ran
+when I first generated the right answers.
