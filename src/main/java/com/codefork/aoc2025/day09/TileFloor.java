@@ -60,7 +60,7 @@ public class TileFloor {
 
     public static final Pos INITIAL = new Pos(-1, -1);
 
-    // part 2
+    // part 2: this doesn't work
     public static long findAreaOfLargestRectangleInsideLoop(Stream<String> input) {
         var redTiles = parseInput(input);
 
@@ -86,7 +86,7 @@ public class TileFloor {
         System.out.println("total number of rectangles = " + candidateRectangles.size());
 
         // reduce candidate space: keep only rectangles where at least 3 corners are on the perimeter.
-        // this has to be true of the solution.
+        // this has to be true of the solution. Nope, this isn't true, and doesn't work!
         var filtered = candidateRectangles.stream().filter(rect -> {
             var numOtherCornersOnPerimeter =  rect.getOtherCorners().stream().filter(corner ->
                 perimeter.tiles().contains(corner)
