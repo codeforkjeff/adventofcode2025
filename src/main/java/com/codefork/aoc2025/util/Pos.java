@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  * @param x
  * @param y
  */
-public record Pos(int x, int y) {
+public record Pos(int x, int y) implements Comparable<Pos> {
 
     /**
      * returns adjacent positions, including ones adjacent on the diagonal.
@@ -29,4 +29,24 @@ public record Pos(int x, int y) {
         return new Pos(x, y);
     }
 
+    // return the set of points between this point and other, inclusive.
+    // both points might lie on the same axis (either have same x or y value)
+    public List<Pos> line(Pos other) {
+        if(x() == other.x()) {
+            var minY = Math.min(y(), other.y());
+            var maxY = Math.max(y(), other.y());
+            return IntStream.range(minY, maxY).mapToObj(y -> new Pos(x(), y)).toList();
+        } else if(y() == other.y()) {
+            var minX = Math.min(x(), other.x());
+            var maxX = Math.max(x(), other.x());
+            return IntStream.range(minX, maxX).mapToObj(x -> new Pos(x, y())).toList();
+        }
+        throw new RuntimeException("can't return points for a line between " + this + " and " + other);
+    }
+
+    @Override
+    public int compareTo(Pos o) {
+        var x_ = Integer.compare(x(), o.x());
+        return x_ != 0 ? x_ : Integer.compare(y(), o.y());
+    }
 }
