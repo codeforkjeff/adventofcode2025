@@ -86,3 +86,15 @@ Obviously, as problems get more complicated, writing the solutions is a much mor
 process, with more simplifying/optimizing both along the way, and also afterwards, when certain things
 become clear. That's just to say, the code I committed for day 8 is pretty different from the code I ran
 when I first generated the right answers.
+
+### 12/13/2025
+
+The last 4 days of this year's puzzles are pretty darn tricky.
+
+I've only done part 1 for both day 9 and day 10. I need to come back to those and finish them.
+
+I managed to solve both parts of day 11 in a few hours. I'm pretty proud of the solution I came up with,
+after trying a bunch of things that didn't work, and reasoning my way to an approach that worked and
+is very performant. Details are in the code comments.
+
+I still aim to have everything wrapped up before Christmas, which I think is doable.
